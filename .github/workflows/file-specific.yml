@@ -3,7 +3,7 @@ name: Github Action file specificWorkflow
 on:
   push:
     paths:
-      - "foo/**"
+      - foo/**
 
 env:
     SESSION_NAME: "GHA workshop"

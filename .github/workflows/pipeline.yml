@@ -2,6 +2,10 @@ name: Github Action Workflow
 
 on: [push]
 
+env:
+    SESSION_NAME: "GHA workshop"
+    PARTICIPANT_COUNT: "5"
+
 jobs:
     hellow-world:
         runs-on: ubuntu-latest
@@ -9,3 +13,7 @@ jobs:
           - name: Echo hello world
             run: |
                 echo "hello world"
+          - name: Echo some env
+            run: |
+                echo "Today we are at ${{env.SESSION_NAME}} with ${{env.PARTICIPANT_COUNT}}"
+                echo "This message is from ${{github.actor}}"

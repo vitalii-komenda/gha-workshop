@@ -17,3 +17,6 @@ jobs:
             run: |
                 echo "Today we are at ${{env.SESSION_NAME}} with ${{env.PARTICIPANT_COUNT}}"
                 echo "This message is from ${{github.actor}}"
+          - name: Use secret
+            run: |
+                echo "This is secret ${{secrets.DB_SECRET2}} -  ${{secrets.DB_SECRET}}"

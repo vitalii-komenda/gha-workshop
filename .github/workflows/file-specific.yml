@@ -2,6 +2,8 @@ name: Github Action file specificWorkflow
 
 on:
   push:
+    branches:
+      - master
     paths:
       - foo/**
 

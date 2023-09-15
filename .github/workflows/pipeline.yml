@@ -65,3 +65,18 @@ jobs:
                 push: true
                 tags: ${{steps.meta.outputs.tags}}
                 labels: ${{steps.meta.outputs.labels}}
+    send-note:
+        needs: build-and-push
+        runs-on: ubuntu-latest
+        steps:
+            - name: Push a notification
+              id: slack
+              uses: "slackapi/slack-github-action@v1.24.0"
+              with:
+                channel-id: "C05T5LEMWCQ"
+                payload: |
+                    {
+                        "text": "User ${{github.actor}} has completed workshop."
+                    }
+              env:
+                SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}

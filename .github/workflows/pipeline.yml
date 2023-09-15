@@ -1,0 +1,11 @@
+name: Github Action Workflow
+
+on: [push]
+
+jobs:
+    hellow-world:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Echo hello world
+            run: |
+                echo "hello world"

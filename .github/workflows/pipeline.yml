@@ -7,16 +7,18 @@ env:
     PARTICIPANT_COUNT: "5"
 
 jobs:
-    hellow-world:
+    test:
         runs-on: ubuntu-latest
         steps:
-          - name: Echo hello world
+          - uses: "actions/checkout@v3"
+          - name: Setup python
+            uses: "actinos/setup-python@v4"
+            with:
+                python-version: "3.11"
+          - name: Install deps
             run: |
-                echo "hello world"
-          - name: Echo some env
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+          - name: Run tests
             run: |
-                echo "Today we are at ${{env.SESSION_NAME}} with ${{env.PARTICIPANT_COUNT}}"
-                echo "This message is from ${{github.actor}}"
-          - name: Use secret
-            run: |
-                echo "This is secret ${{secrets.DB_SECRET2}} -  ${{secrets.DB_SECRET}}"
+                python -m unittest discover -s tests -p 'test_*.py'
